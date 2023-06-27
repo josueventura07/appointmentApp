@@ -120,6 +120,12 @@
     align-items: center;
 }
 
+.taskName {
+    display: flex;
+    flex-direction: column;
+    
+}
+
 .task h4 {
     margin-left: 20px;
 }
@@ -139,4 +145,22 @@
     cursor: pointer;
     position: absolute;
     right: 15%;
+}
+
+.fa-check,
+.fa-trash {
+    cursor: pointer;
+    transition: transform 0.5s ease;
+}
+
+.fa-check:hover {
+    transform: scale(1.1);
+    transition: transform 0.5s ease;
+    color: green;
+}
+
+.fa-trash:hover {
+    transform: scale(1.08);
+    transition: transform 0.5s ease;
+    color: rgb(231, 68, 68);
 }
