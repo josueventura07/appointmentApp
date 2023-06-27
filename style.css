@@ -134,11 +134,6 @@
     margin-left: 20px;
 }
 
-input[type="checkbox"] {
-    color: aqua;
-    border-radius: 50%;
-}
-
 .btn_container {
     display: flex;
     gap: 30px;
