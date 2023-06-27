@@ -3,8 +3,10 @@ const cardList = document.querySelector('.card_list')
 const btnCleanAll = document.querySelector('.btn_cleanAll')
 const card = document.querySelector('.card')
 
+
 let list = []
 let id = 0
+
 
 
 const createTask = (task, comment) => {
@@ -12,6 +14,7 @@ const createTask = (task, comment) => {
     const newTask = {
         id: id,
         taskName: task,
+        priority: 'normal',
         state: 'Pending',
         comment: comment ? comment: '---'
     }
@@ -48,6 +51,31 @@ const saveDB = () => {
     printDB()
 }
 
+const isChecked = (checkbox, item) => {
+
+    let indexArray 
+    
+    if(checkbox === 'urgente') {
+       
+        indexArray = list.findIndex((element)=> element.id === parseInt(item)) 
+        
+        list[indexArray].priority = 'urgente'
+        saveDB()
+    } else if(checkbox === 'normal') {
+        
+        indexArray = list.findIndex((element)=> element.id === parseInt(item)) 
+
+        list[indexArray].priority = 'normal'
+        saveDB()
+    } else {
+        priority = ''
+       
+    }
+
+   
+   
+}
+
 const printDB = () => {
     cardList.innerHTML = ''
 
@@ -76,12 +104,12 @@ const printDB = () => {
                         </div>
                         <div>
                             <div>
-                                <label for="priority"><strong>Prioridad</strong></label>
-                                <input type="checkbox">
+                                <label for="urgente"><strong>Prioridad</strong></label>
+                                <input type="checkbox" class="priority_check" name="urgente" id="${element.id}" value="urgente" ${element.priority === 'urgente' ? 'checked' : ''}>
                             </div>
                             <div>
                                 <label for="normal"><strong>Normal</strong></label>
-                                <input type="checkbox">
+                                <input type="checkbox" class="priority_check" name="normal" id="${element.id}" value="normal" ${element.priority === 'normal' ? 'checked' : ''}>
                             </div>
                         </div>
                         <div class="btn_container">
@@ -126,9 +154,13 @@ btnCleanAll.addEventListener('click', function() {
 
 cardList.addEventListener('click', (e) => {
     
-    const btn = e.target.className
     
+    const checkbox = e.target.name
+   
+    const btn = e.target.className
     let item = e.target.getAttribute('id')
+    
+   isChecked(checkbox, item)
 
     if(btn.split(' ')[1] === 'fa-trash'){
         deleteTask(item)
@@ -143,3 +175,6 @@ cardList.addEventListener('click', (e) => {
      
     
 })
+
+
+
