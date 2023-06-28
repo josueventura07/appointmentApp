@@ -98,13 +98,14 @@ const printDB = () => {
                             </svg>
                             <div class="taskName">
                                 <aside><b>${element.taskName}</b> - ${element.state}</aside>
-                                <h4>Comentarios: ${element.comment}</h4>
+                                <h4>Comentarios: <i>${element.comment}</i></h4>
                             </div>
                             
                         </div>
-                        <div>
+                        <div class="checkbox_container">
+                            <h3>Prioridad</h3>
                             <div>
-                                <label for="urgente"><strong>Prioridad</strong></label>
+                                <label for="urgente"><strong>Urgente</strong></label>
                                 <input type="checkbox" class="priority_check" name="urgente" id="${element.id}" value="urgente" ${element.priority === 'urgente' ? 'checked' : ''}>
                             </div>
                             <div>
