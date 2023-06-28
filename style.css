@@ -183,9 +183,16 @@
 }    
 
 .fa-check,
-.fa-trash {
+.fa-trash,
+.fa-reply {
     cursor: pointer;
     transition: transform 0.2s ease;
+}
+
+.fa-reply:hover {
+    transform: scale(1.1);
+    transition: transform 0.2s ease;
+    color: rgb(12, 88, 202);
 }
 
 .fa-check:hover {
@@ -198,6 +205,10 @@
     transform: scale(1.08);
     transition: transform 0.5s ease;
     color: rgb(231, 68, 68);
+}
+
+.hidden {
+    display: none;
 }
 
 @media screen and (min-width: 1024px) {

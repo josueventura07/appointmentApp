@@ -46,6 +46,13 @@ const checkedTask = (item) => {
    saveDB()
 }
 
+const unCheckedTask = (item) => {
+    let indexArray = list.findIndex((element)=> element.id === parseInt(item)) 
+ 
+    list[indexArray].state = 'Pending'
+    saveDB()
+ }
+
 const saveDB = () => {
     localStorage.setItem('tasks', JSON.stringify(list))
     printDB()
@@ -114,7 +121,8 @@ const printDB = () => {
                             </div>
                         </div>
                         <div class="btn_container">
-                            <i class="fa-solid fa-check" id="${element.id}"></i>
+                            <i class="fa-solid fa-reply ${element.state === "Done" ? '' : 'hidden'}" id="${element.id}"></i>
+                            <i class="fa-solid fa-check ${element.state === "Done" ? 'hidden' : ''}" id="${element.id}"></i>
                             <i class="fa-solid fa-trash" id="${element.id}"></i>
                         </div>
                 </div>
@@ -168,6 +176,10 @@ cardList.addEventListener('click', (e) => {
         printDB()
     } else if(btn.split(' ')[1] === 'fa-check') {
         checkedTask(item)
+        printDB()
+        
+    } else if(btn.split(' ')[1] === 'fa-reply') {
+        unCheckedTask(item)
         printDB()
         
     } else {
