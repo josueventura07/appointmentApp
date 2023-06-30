@@ -88,8 +88,10 @@ const printDB = () => {
 
     list = JSON.parse(localStorage.getItem('tasks'))
     
-    if(list === null) {
+
+    if(list === null || list.length === 0) {
         list = []
+        id = 0
         cardList.innerHTML = `
         <h3 class="msg_listContainer">No hay Tareas Listadas</h3>
     `
@@ -109,7 +111,7 @@ const printDB = () => {
                             </div>
                             
                         </div>
-                        <div class="checkbox_container">
+                        <div class="checkbox_container" >
                             <h3>Prioridad</h3>
                             <div>
                                 <label for="urgente"><strong>Urgente</strong></label>
@@ -130,6 +132,7 @@ const printDB = () => {
         })
     }
 
+    id = list.length -1 + 1
 }
 
 //DOM Events
@@ -168,7 +171,8 @@ cardList.addEventListener('click', (e) => {
    
     const btn = e.target.className
     let item = e.target.getAttribute('id')
-    
+    console.log(e.target)
+
    isChecked(checkbox, item)
 
     if(btn.split(' ')[1] === 'fa-trash'){
