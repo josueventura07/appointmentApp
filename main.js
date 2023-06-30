@@ -62,13 +62,13 @@ const isChecked = (checkbox, item) => {
 
     let indexArray 
     
-    if(checkbox === 'urgente') {
+    if(checkbox === 'p-urgente') {
        
         indexArray = list.findIndex((element)=> element.id === parseInt(item)) 
         
         list[indexArray].priority = 'urgente'
         saveDB()
-    } else if(checkbox === 'normal') {
+    } else if(checkbox === 'p-normal') {
         
         indexArray = list.findIndex((element)=> element.id === parseInt(item)) 
 
@@ -115,11 +115,11 @@ const printDB = () => {
                             <h3>Prioridad</h3>
                             <div>
                                 <label for="urgente"><strong>Urgente</strong></label>
-                                <input type="checkbox" class="priority_check" name="urgente" id="${element.id}" value="urgente" ${element.priority === 'urgente' ? 'checked' : ''}>
+                                <input type="checkbox" class="priority_check" name="p-urgente" id="${element.id}" value="urgente" ${element.priority === 'urgente' ? 'checked' : ''}>
                             </div>
                             <div>
                                 <label for="normal"><strong>Normal</strong></label>
-                                <input type="checkbox" class="priority_check" name="normal" id="${element.id}" value="normal" ${element.priority === 'normal' ? 'checked' : ''}>
+                                <input type="checkbox" class="priority_check" name="p-normal" id="${element.id}" value="normal" ${element.priority === 'normal' ? 'checked' : ''}>
                             </div>
                         </div>
                         <div class="btn_container">
@@ -171,7 +171,7 @@ cardList.addEventListener('click', (e) => {
    
     const btn = e.target.className
     let item = e.target.getAttribute('id')
-    console.log(e.target)
+    
 
    isChecked(checkbox, item)
 
