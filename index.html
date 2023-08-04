@@ -16,10 +16,13 @@
                 </g>
             </svg>
             <h1>Lista de Tareas</h1>
+            <button type="button" class="newNote_btn"><div class="btnAddIcon">+</div><div class="btnCloseIcon hidden">x</div></button>
         </div>
-        <input type="text" id="task" placeholder="Liste su tarea aquí" required>
-        <input type="text" id="comment" placeholder="Comentario">
-        <button type="submit">Agregar</button>
+        <div class="form_input hidden">
+            <input type="text" id="task" placeholder="Liste su tarea aquí" required>
+            <input type="text" id="comment" placeholder="Comentario">
+            <button class="add_btn" type="submit">Agregar</button>
+        </div>
     </form>
     
     <section class="card_list">

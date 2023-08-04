@@ -4,9 +4,9 @@ const btnCleanAll = document.querySelector('.btn_cleanAll')
 const card = document.querySelector('.card')
 
 
+
 let list = []
 let id = 0
-
 
 
 const createTask = (task, comment) => {
@@ -139,6 +139,7 @@ const printDB = () => {
 formulario.addEventListener('submit', e => {
     e.preventDefault()
     
+    
     const task = e.target.task.value
     const comment = e.target.comment.value
 
@@ -146,6 +147,17 @@ formulario.addEventListener('submit', e => {
     saveDB()
     printDB()
     formulario.reset()
+})
+
+const newNoteBtn = document.querySelector('.newNote_btn')
+const formInput = document.querySelector('.form_input')
+const addIcon =document.querySelector('.btnAddIcon')
+const closeIcon =document.querySelector('.btnCloseIcon')
+
+newNoteBtn.addEventListener('click', e => {
+    formInput.classList.toggle('hidden')
+    addIcon.classList.toggle('hidden')
+    closeIcon.classList.toggle('hidden')
 })
 
 document.addEventListener('DOMContentLoaded', printDB)
