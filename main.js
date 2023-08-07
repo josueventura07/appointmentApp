@@ -154,8 +154,19 @@ const formInput = document.querySelector('.form_input')
 const addIcon =document.querySelector('.btnAddIcon')
 const closeIcon =document.querySelector('.btnCloseIcon')
 
+const formBtnClose = ((d) => {
+    const closeIcon2 = d.querySelector('.fa-circle-xmark')
+    
+    closeIcon2.addEventListener('click', e => {
+        formInput.classList.toggle('trastaleForm')
+        addIcon.classList.toggle('hidden')
+        closeIcon.classList.toggle('hidden')
+    })
+
+})(document)
+
 newNoteBtn.addEventListener('click', e => {
-    formInput.classList.toggle('hidden')
+    formInput.classList.toggle('trastaleForm')
     addIcon.classList.toggle('hidden')
     closeIcon.classList.toggle('hidden')
 })

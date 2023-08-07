@@ -19,17 +19,47 @@
     margin: 0 auto;
     max-width: 1024px;
     max-height: 300px;
-        
+    position: relative;
+    z-index: 1;    
 }
 
 .form_input {
     width: 100%;
+    max-width: 400px;
+    min-width: 250px;
+    height: 200px;
+    border-radius: 5px;
+    padding: 0 10px;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-color: rgb(175, 201, 223);
     gap: 10px;
-    margin-top: 20px;
+    position: absolute;
+    top: 100px;
+    right: 0;
+    transform: translateY(-5%);
+    transition: transform 1s ease, opacity 0.5s ease;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.5);
+    opacity: 1;
+}
+
+.fa-circle-xmark {
+    color: rgb(104, 129, 151);
+    font-size: 25px;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.trastaleForm {
+    opacity: 0;
+    transform: translateY(-200%);
+    transition: transform 2s ease, opacity 1s ease;
+    
 }
 
 .hidden {
@@ -39,13 +69,14 @@
 .form input {
     font-size: 18px;
     width: 100%;
+    background-color: rgb(175, 201, 223);
     border: none;
-    border-bottom: thin solid rgb(202, 199, 199);
+    border-bottom: thin solid rgb(119, 123, 126);
     outline: none;
 }
 
 .form input::placeholder {
-    color: rgb(186, 192, 197);
+    color: rgb(119, 123, 126);
 }
 
 #comment {
@@ -62,6 +93,7 @@
     color: white;
     border-radius: 5px;
     box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.5);
+    margin-top: 20px;
 }
 
 .newNote_btn {
@@ -74,6 +106,7 @@
     box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.5);
     margin-left: 20px;
     transition: transform 1s ease;
+    cursor: pointer;
 }
 
 .newNote_btn:hover {
@@ -108,7 +141,7 @@
 }
 
 .card {
-    width: 100%;
+    max-width: 350px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -133,7 +166,7 @@
 }
 
 .card_list::-webkit-scrollbar-thumb {
-    background-color: rgb(110, 110, 243);
+    background-color: rgb(175, 201, 223);
     border-radius: 10px;
 }
 
@@ -254,12 +287,16 @@
     color: rgb(231, 68, 68);
 }
 
-.hidden {
-    display: none;
+
+@media screen and (min-width: 750px) {
+    .form_input {
+        top: 30px;
+    }  
+
+        
 }
 
 @media screen and (min-width: 1024px) {
-      
     .taskName span {
         margin-left: 30px; 
     }
