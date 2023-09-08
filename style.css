@@ -96,6 +96,18 @@
     margin-top: 20px;
 }
 
+.add_btn {
+    cursor: pointer;
+}
+
+.add_btn:hover {
+    filter: brightness(1.1);
+}
+
+.btn_cleanAll:hover {
+    filter: brightness(1.1);
+}
+
 .newNote_btn {
     width: 30px;
     height: 30px;

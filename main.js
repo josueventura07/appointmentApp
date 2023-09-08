@@ -21,37 +21,40 @@ const createTask = (task, comment) => {
     id ++
     list.push(newTask)
     
-   
 }
 
 const deleteTask = (item) => {
-    let value = parseInt(item)
-    let arrayIndex
-    list.forEach((element, index) => {
-        if(element.id === value) {
-            arrayIndex = index
-           
-        }
-    })
     
-    list.splice(arrayIndex, 1)
-    saveDB()
+    const response = confirm("Se eliminara la nota seleccionada, ¿esta seguro(a)?")
+        
+        if(response === true){
+            let value = parseInt(item)
+            let arrayIndex
+            list.forEach((element, index) => {
+                if(element.id === value) {
+                    arrayIndex = index
+                }
+            })
+    
+            list.splice(arrayIndex, 1)
+            saveDB() 
+        }
     
 }
 
 const checkedTask = (item) => {
-   let indexArray = list.findIndex((element)=> element.id === parseInt(item)) 
+let indexArray = list.findIndex((element)=> element.id === parseInt(item)) 
 
-   list[indexArray].state = 'Done'
-   saveDB()
+list[indexArray].state = 'Done'
+saveDB()
 }
 
 const unCheckedTask = (item) => {
     let indexArray = list.findIndex((element)=> element.id === parseInt(item)) 
- 
+
     list[indexArray].state = 'Pending'
     saveDB()
- }
+}
 
 const saveDB = () => {
     localStorage.setItem('tasks', JSON.stringify(list))
@@ -63,7 +66,7 @@ const isChecked = (checkbox, item) => {
     let indexArray 
     
     if(checkbox === 'p-urgente') {
-       
+
         indexArray = list.findIndex((element)=> element.id === parseInt(item)) 
         
         list[indexArray].priority = 'urgente'
@@ -76,11 +79,8 @@ const isChecked = (checkbox, item) => {
         saveDB()
     } else {
         priority = ''
-       
-    }
 
-   
-   
+    }
 }
 
 const printDB = () => {
@@ -97,7 +97,6 @@ const printDB = () => {
     `
     } else {
         list.forEach(element => {
-           
             cardList.innerHTML += 
             `
                 <div class="card ${element.state === "Done" ? 'task_done' : element.priority === "urgente" ? 'task_urgent' : ''}">
@@ -175,15 +174,22 @@ document.addEventListener('DOMContentLoaded', printDB)
 
 btnCleanAll.addEventListener('click', function() {
     
-    const response = confirm("¿Seguro que desea limpiar la lista en su totalidad?")
+    if(list.length > 0) {
+        
+        const response = confirm("¿Seguro que desea limpiar la lista en su totalidad?")
+        
+        if(response === true){
+            localStorage.removeItem('tasks')
+            printDB()
+            return 
+        } else {
+            return 
+        }
 
-    if(response === true){
-        localStorage.removeItem('tasks')
-        printDB()
-        return 
     } else {
-        return 
+        alert('La lista ya esta vacía!')
     }
+    
 
 })
 
@@ -191,12 +197,12 @@ cardList.addEventListener('click', (e) => {
     
     
     const checkbox = e.target.name
-   
+
     const btn = e.target.className
     let item = e.target.getAttribute('id')
     
 
-   isChecked(checkbox, item)
+isChecked(checkbox, item)
 
     if(btn.split(' ')[1] === 'fa-trash'){
         deleteTask(item)
@@ -212,7 +218,6 @@ cardList.addEventListener('click', (e) => {
     } else {
         return
     }
-     
     
 })
 
